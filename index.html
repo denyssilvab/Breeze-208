@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breeze 208 — Bem-vindo!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-50:  #f0f9ff;
+      --blue-100: #e0f2fe;
+      --blue-400: #38bdf8;
+      --blue-500: #0ea5e9;
+      --blue-600: #0284c7;
+      --blue-700: #0369a1;
+      --sand:     #fef3c7;
+      --sand-400: #fbbf24;
+      --slate-50: #f8fafc;
+      --slate-100:#f1f5f9;
+      --slate-200:#e2e8f0;
+      --slate-400:#94a3b8;
+      --slate-600:#475569;
+      --slate-700:#334155;
+      --slate-800:#1e293b;
+      --red-50:   #fef2f2;
+      --red-400:  #f87171;
+      --green-50: #f0fdf4;
+      --green-400:#4ade80;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, var(--blue-600) 0%, var(--blue-400) 60%, #7dd3fc 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: var(--slate-50);
+      clip-path: ellipse(56% 100% at 50% 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      opacity: .85;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .hero-wave {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ── MAIN WRAPPER ─────────────────────────────────── */
+    main {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px 64px;
+    }
+
+    /* ── SECTION TITLE ────────────────────────────────── */
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--blue-600);
+      margin: 36px 0 14px;
+    }
+
+    /* ── CHECK-IN / OUT ───────────────────────────────── */
+    .checkin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .checkin-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .checkin-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .checkin-card .label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--slate-400);
+      margin-bottom: 4px;
+    }
+    .checkin-card .time {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue-600);
+    }
+    .checkin-card .sub {
+      font-size: 12px;
+      color: var(--slate-400);
+      margin-top: 2px;
+    }
+
+    /* ── RULES ────────────────────────────────────────── */
+    .rule-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 16px;
+      padding: 20px 18px;
+      margin-bottom: 12px;
+    }
+
+    .rule-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .rule-card-header .icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .rule-card-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .rule-card-header .chevron {
+      font-size: 12px;
+      color: var(--slate-400);
+      transition: transform .25s;
+    }
+
+    .rule-card.open .chevron { transform: rotate(180deg); }
+
+    .rule-card-body {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--slate-100);
+    }
+
+    .rule-card.open .rule-card-body { display: block; }
+
+    .rule-card-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rule-card-body li {
+      font-size: 14px;
+      color: var(--slate-600);
+      display: flex;
+      gap: 8px;
+    }
+
+    .rule-card-body li::before {
+      content: '•';
+      color: var(--blue-400);
+      font-size: 18px;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+
+    .rule-card-body p {
+      font-size: 14px;
+      color: var(--slate-600);
+    }
+
+    .alert {
+      background: var(--red-50);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #b91c1c;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .info {
+      background: var(--blue-50);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--blue-700);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    /* color themes for icon-wrap */
+    .bg-blue   { background: var(--blue-50); }
+    .bg-green  { background: var(--green-50); }
+    .bg-sand   { background: var(--sand); }
+    .bg-red    { background: var(--red-50); }
+    .bg-slate  { background: var(--slate-100); }
+
+    /* ── ATTRACTIONS PLACEHOLDER ──────────────────────── */
+    .attractions-placeholder {
+      background: linear-gradient(135deg, var(--sand) 0%, #fde68a 100%);
+      border: 1.5px dashed var(--sand-400);
+      border-radius: 16px;
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .attractions-placeholder .icon { font-size: 36px; margin-bottom: 12px; }
+    .attractions-placeholder h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .attractions-placeholder p {
+      font-size: 13px;
+      color: #b45309;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 24px 16px 40px;
+      font-size: 12px;
+      color: var(--slate-400);
+    }
+
+    footer strong { color: var(--blue-500); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-wave">🌊</span>
+    <div class="hero-badge">Bem-vindo ao</div>
+    <h1>Breeze 208</h1>
+    <p>Aqui estão tudo que você precisa saber para aproveitar ao máximo a sua estadia.</p>
+  </div>
+
+  <main>
+
+    <!-- CHECK-IN / CHECK-OUT -->
+    <p class="section-title">Horários</p>
+    <div class="checkin-grid">
+      <div class="checkin-card">
+        <div class="icon">🔑</div>
+        <div class="label">Check-in</div>
+        <div class="time">15h00</div>
+        <div class="sub">a partir de</div>
+      </div>
+      <div class="checkin-card">
+        <div class="icon">🏖️</div>
+        <div class="label">Check-out</div>
+        <div class="time">12h00</div>
+        <div class="sub">até</div>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <p class="section-title">Regras & Informações</p>
+
+    <!-- Estacionamento -->
+    <div class="rule-card open">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-blue">🚗</div>
+        <h3>Estacionamento</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <p>As vagas do condomínio são rotativas. Em períodos de altíssima temporada (réveillon e janeiro), o fluxo é maior — mas a região é tranquila e monitorada, caso precise parar na frente do prédio.</p>
+      </div>
+    </div>
+
+    <!-- Churrasqueira -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-sand">🔥</div>
+        <h3>Churrasqueira</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <p>Para utilizar a churrasqueira privativa da cobertura, o condomínio cobra uma <strong>taxa de reserva de R$ 100,00</strong>. Consulte disponibilidade na portaria.</p>
+      </div>
+    </div>
+
+    <!-- Fumantes -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-red">🚭</div>
+        <h3>Fumantes</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <div class="alert">⚠️ É <strong>estritamente proibido</strong> fumar no apartamento e em qualquer dependência do condomínio.</div>
+      </div>
+    </div>
+
+    <!-- Pets -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-green">🐾</div>
+        <h3>Pets</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <p>Eu amo animais! No entanto, devido a experiências anteriores negativas, infelizmente <strong>não posso autorizar pets</strong> no apartamento. Conto com a sua compreensão. 🙏</p>
+      </div>
+    </div>
+
+    <!-- Áreas Comuns -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-blue">🏢</div>
+        <h3>Áreas Comuns</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <ul>
+          <li>Proibido transitar pelas áreas comuns com trajes de banho ou sem camisa.</li>
+          <li>Ao chegar da praia, utilize a ducha na entrada do acesso praia antes de entrar no condomínio.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Piscina -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-blue">🏊</div>
+        <h3>Piscina</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <div class="info" style="margin-bottom:14px">🕐 Todos os dias das <strong>6h às 22h</strong> — exceto nos dias de limpeza (que ocorre à noite).</div>
+        <ul>
+          <li>Utilize a ducha antes de entrar na piscina.</li>
+          <li>Use trajes com tecidos apropriados para banho.</li>
+          <li>Ao sair da piscina, utilizar o <strong>elevador de serviço</strong>.</li>
+          <li>Crianças não devem estar desacompanhadas.</li>
+          <li>Proibido pular de cabeça.</li>
+          <li>Proibido comer ou beber dentro da piscina.</li>
+          <li>Proibido objetos de vidro em toda a área da piscina.</li>
+          <li>Proibido som e festas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Lixo -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-slate">🗑️</div>
+        <h3>Lixo</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <p>O lixo deve ser acondicionado em <strong>sacos plásticos</strong> (fornecidos no apartamento) e descartado nos depósitos localizados no <strong>subsolo / estacionamento (-1)</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Visitas -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-red">🚷</div>
+        <h3>Visitas</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <div class="alert">⚠️ <strong>Não é permitido</strong> receber visitas no condomínio.</div>
+      </div>
+    </div>
+
+    <!-- Academia, Sauna & Lavanderia -->
+    <div class="rule-card">
+      <div class="rule-card-header" onclick="toggle(this)">
+        <div class="icon-wrap bg-green">💪</div>
+        <h3>Academia, Sauna & Lavanderia</h3>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="rule-card-body">
+        <div class="info" style="margin-bottom:14px">🕐 Todos os dias das <strong>7h às 22h</strong>.</div>
+        <p>Consulte a disponibilidade na portaria antes de utilizar.</p>
+      </div>
+    </div>
+
+    <!-- ATTRACTIONS PLACEHOLDER -->
+    <p class="section-title">Atratividades</p>
+    <div class="attractions-placeholder">
+      <div class="icon">🗺️</div>
+      <h3>Em breve por aqui!</h3>
+      <p>Dicas de restaurantes, passeios e o melhor que a região tem a oferecer.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    Feito com ❤️ para os hóspedes do <strong>Breeze 208</strong>
+  </footer>
+
+  <script>
+    function toggle(header) {
+      header.closest('.rule-card').classList.toggle('open');
+    }
+
+    // Open first card by default is already done via HTML class
+  </script>
+
+</body>
+</html>
