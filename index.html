@@ -1,469 +1,798 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Breeze 208 — Bem-vindo!</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Breeze 208</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --blue-50:  #f0f9ff;
-      --blue-100: #e0f2fe;
-      --blue-400: #38bdf8;
-      --blue-500: #0ea5e9;
-      --blue-600: #0284c7;
-      --blue-700: #0369a1;
-      --sand:     #fef3c7;
-      --sand-400: #fbbf24;
-      --slate-50: #f8fafc;
-      --slate-100:#f1f5f9;
-      --slate-200:#e2e8f0;
-      --slate-400:#94a3b8;
-      --slate-600:#475569;
-      --slate-700:#334155;
-      --slate-800:#1e293b;
-      --red-50:   #fef2f2;
-      --red-400:  #f87171;
-      --green-50: #f0fdf4;
-      --green-400:#4ade80;
+      --ocean:      #0c4a6e;
+      --ocean-mid:  #075985;
+      --teal:       #0284c7;
+      --teal-light: #38bdf8;
+      --foam:       #f0f9ff;
+      --foam-dark:  #dbeafe;
+      --sand:       #fdf4dc;
+      --sand-warm:  #f0d9a0;
+      --gold:       #c9a85c;
+      --gold-dark:  #9a7a3a;
+      --text-dark:  #0f2537;
+      --text:       #334155;
+      --text-light: #64748b;
+      --white:      #ffffff;
+      --border:     #dde5ef;
+      --red:        #dc2626;
+      --wa-green:   #25d366;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--slate-50);
-      color: var(--slate-800);
-      line-height: 1.6;
+      background: var(--foam);
+      color: var(--text);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: 96px;
     }
 
-    /* ── HERO ─────────────────────────────────────────── */
+    /* LANG BAR */
+    .lang-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ocean);
+      display: flex; justify-content: flex-end;
+      gap: 6px; padding: 8px 16px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.3);
+      color: rgba(255,255,255,.65);
+      border-radius: 999px;
+      font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 500;
+      padding: 4px 13px; cursor: pointer; transition: all .2s;
+    }
+    .lang-btn.active {
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.8);
+      color: var(--white);
+    }
+
+    /* HERO */
     .hero {
-      background: linear-gradient(160deg, var(--blue-600) 0%, var(--blue-400) 60%, #7dd3fc 100%);
-      color: #fff;
-      padding: 56px 24px 48px;
+      background: linear-gradient(165deg, var(--ocean) 0%, var(--ocean-mid) 45%, #0ea5e9 100%);
+      color: var(--white);
+      padding: 40px 24px 60px;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
-
     .hero::after {
       content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 48px;
-      background: var(--slate-50);
-      clip-path: ellipse(56% 100% at 50% 100%);
+      position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 44px; background: var(--foam);
+      clip-path: ellipse(62% 100% at 50% 100%);
     }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,.2);
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      margin-bottom: 20px;
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .15em; text-transform: uppercase;
+      opacity: .7; margin-bottom: 10px;
     }
-
     .hero h1 {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -.5px;
-      line-height: 1.15;
-      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 50px; font-weight: 700;
+      line-height: 1.05; margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 13px; opacity: .72;
+      font-weight: 300; margin-bottom: 28px;
+    }
+    .hero-times {
+      display: inline-flex; gap: 28px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 18px; padding: 18px 32px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-time { text-align: center; }
+    .hero-time .ht-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      opacity: .6; margin-bottom: 4px;
+    }
+    .hero-time .ht-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 600; line-height: 1;
+    }
+    .hero-time .ht-sub { font-size: 10px; opacity: .5; margin-top: 3px; }
+    .hero-div { width: 1px; background: rgba(255,255,255,.2); }
+
+    /* MAIN */
+    main { max-width: 500px; margin: 0 auto; padding: 4px 16px 0; }
+
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--teal); margin: 28px 0 12px; padding-left: 2px;
     }
 
-    .hero p {
-      font-size: 15px;
-      opacity: .85;
-      max-width: 300px;
-      margin: 0 auto;
+    /* ACCORDION */
+    .accordion { display: flex; flex-direction: column; gap: 10px; }
+    .acc-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: box-shadow .2s;
     }
-
-    .hero-wave {
-      font-size: 48px;
-      margin-bottom: 16px;
-      display: block;
+    .acc-item.open { box-shadow: 0 4px 20px rgba(12,74,110,.07); }
+    .acc-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 18px; cursor: pointer;
+      user-select: none; -webkit-tap-highlight-color: transparent;
     }
-
-    /* ── MAIN WRAPPER ─────────────────────────────────── */
-    main {
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 0 16px 64px;
+    .acc-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
     }
-
-    /* ── SECTION TITLE ────────────────────────────────── */
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--blue-600);
-      margin: 36px 0 14px;
+    .acc-title { flex: 1; font-size: 15px; font-weight: 600; color: var(--text-dark); }
+    .acc-chevron {
+      color: var(--text-light); transition: transform .25s; flex-shrink: 0;
     }
-
-    /* ── CHECK-IN / OUT ───────────────────────────────── */
-    .checkin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    .acc-item.open .acc-chevron { transform: rotate(180deg); }
+    .acc-body {
+      display: none; padding: 0 18px 18px;
+      border-top: 1px solid var(--border);
     }
+    .acc-item.open .acc-body { display: block; }
+    .acc-body-inner { padding-top: 16px; }
 
-    .checkin-card {
-      background: #fff;
-      border: 1px solid var(--slate-200);
-      border-radius: 16px;
-      padding: 20px 16px;
-      text-align: center;
+    /* CONTENT ATOMS */
+    .subsection { margin-bottom: 18px; }
+    .subsection:last-child { margin-bottom: 0; }
+    .sub-title {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--text-light); margin-bottom: 10px;
     }
-
-    .checkin-card .icon { font-size: 28px; margin-bottom: 8px; }
-    .checkin-card .label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--slate-400);
-      margin-bottom: 4px;
+    .pw-box {
+      background: var(--sand);
+      border: 1px solid var(--sand-warm);
+      border-radius: 10px; padding: 12px 16px; margin-bottom: 8px;
     }
-    .checkin-card .time {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--blue-600);
+    .pw-label { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+    .pw-value {
+      font-family: 'Courier New', monospace;
+      font-size: 20px; font-weight: 700;
+      color: var(--ocean); letter-spacing: .04em;
     }
-    .checkin-card .sub {
-      font-size: 12px;
-      color: var(--slate-400);
-      margin-top: 2px;
+    .pw-note { font-size: 11px; color: var(--text-light); margin-top: 3px; font-style: italic; }
+    .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 12px; }
+    .steps li {
+      counter-increment: s; display: flex; gap: 12px;
+      font-size: 14px; color: var(--text);
     }
-
-    /* ── RULES ────────────────────────────────────────── */
-    .rule-card {
-      background: #fff;
-      border: 1px solid var(--slate-200);
-      border-radius: 16px;
-      padding: 20px 18px;
-      margin-bottom: 12px;
+    .steps li::before {
+      content: counter(s);
+      min-width: 24px; height: 24px;
+      background: var(--ocean); color: var(--white);
+      border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 2px;
     }
-
-    .rule-card-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 0;
-      cursor: pointer;
-      user-select: none;
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .bullets li { font-size: 14px; color: var(--text); display: flex; gap: 8px; }
+    .bullets li .bi { flex-shrink: 0; }
+    .info-box {
+      background: var(--foam-dark);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px; font-size: 13px;
+      color: var(--ocean); margin-bottom: 12px;
     }
-
-    .rule-card-header .icon-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+    .body-text { font-size: 14px; color: var(--text); margin-bottom: 8px; }
+    .detail-item { display: flex; gap: 12px; font-size: 14px; color: var(--text); margin-bottom: 14px; }
+    .detail-item .di { flex-shrink: 0; width: 22px; margin-top: 1px; }
+    .map-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--teal); color: var(--white);
+      border-radius: 12px; padding: 14px 20px;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none; margin: 14px 0;
+      transition: background .2s;
     }
-
-    .rule-card-header h3 {
-      font-size: 15px;
-      font-weight: 600;
-      flex: 1;
+    .map-btn:active { background: var(--ocean); }
+    .prox-item {
+      display: flex; gap: 10px; font-size: 13px;
+      color: var(--text); background: var(--foam);
+      border-radius: 8px; padding: 8px 12px; margin-bottom: 6px;
     }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .checklist li { font-size: 14px; color: var(--text); display: flex; gap: 10px; }
 
-    .rule-card-header .chevron {
-      font-size: 12px;
-      color: var(--slate-400);
-      transition: transform .25s;
+    /* ICON BG */
+    .bg-b { background: #dbeafe; }
+    .bg-t { background: #e0f2fe; }
+    .bg-s { background: var(--sand); }
+    .bg-g { background: #dcfce7; }
+    .bg-o { background: #fff7ed; }
+    .bg-p { background: #f3e8ff; }
+
+    /* TIPS PLACEHOLDER */
+    .tips-ph {
+      background: linear-gradient(135deg, var(--sand), var(--sand-warm));
+      border: 1.5px dashed var(--gold);
+      border-radius: 16px; padding: 32px 20px; text-align: center;
     }
-
-    .rule-card.open .chevron { transform: rotate(180deg); }
-
-    .rule-card-body {
-      display: none;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--slate-100);
+    .tips-ph .ti { font-size: 36px; margin-bottom: 10px; }
+    .tips-ph h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600; color: #7c5c28; margin-bottom: 6px;
     }
+    .tips-ph p { font-size: 13px; color: var(--gold-dark); }
 
-    .rule-card.open .rule-card-body { display: block; }
-
-    .rule-card-body ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    /* FAB */
+    .fab-bar {
+      position: fixed; bottom: 0;
+      left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 500px;
+      display: flex; gap: 10px; padding: 10px 16px 14px;
+      background: rgba(240,249,255,.92);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      z-index: 200;
     }
-
-    .rule-card-body li {
-      font-size: 14px;
-      color: var(--slate-600);
-      display: flex;
-      gap: 8px;
+    .fab-btn {
+      flex: 1; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      border-radius: 14px; padding: 14px 10px;
+      font-size: 14px; font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none; transition: opacity .15s;
     }
+    .fab-btn:active { opacity: .82; }
+    .fab-wa { background: var(--wa-green); color: var(--white); }
+    .fab-port { background: var(--ocean); color: var(--white); }
 
-    .rule-card-body li::before {
-      content: '•';
-      color: var(--blue-400);
-      font-size: 18px;
-      line-height: 1.3;
-      flex-shrink: 0;
-    }
-
-    .rule-card-body p {
-      font-size: 14px;
-      color: var(--slate-600);
-    }
-
-    .alert {
-      background: var(--red-50);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #b91c1c;
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .info {
-      background: var(--blue-50);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: var(--blue-700);
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    /* color themes for icon-wrap */
-    .bg-blue   { background: var(--blue-50); }
-    .bg-green  { background: var(--green-50); }
-    .bg-sand   { background: var(--sand); }
-    .bg-red    { background: var(--red-50); }
-    .bg-slate  { background: var(--slate-100); }
-
-    /* ── ATTRACTIONS PLACEHOLDER ──────────────────────── */
-    .attractions-placeholder {
-      background: linear-gradient(135deg, var(--sand) 0%, #fde68a 100%);
-      border: 1.5px dashed var(--sand-400);
-      border-radius: 16px;
-      padding: 32px 20px;
-      text-align: center;
-    }
-
-    .attractions-placeholder .icon { font-size: 36px; margin-bottom: 12px; }
-    .attractions-placeholder h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: #92400e;
-      margin-bottom: 6px;
-    }
-    .attractions-placeholder p {
-      font-size: 13px;
-      color: #b45309;
-    }
-
-    /* ── FOOTER ───────────────────────────────────────── */
+    /* FOOTER */
     footer {
-      text-align: center;
-      padding: 24px 16px 40px;
-      font-size: 12px;
-      color: var(--slate-400);
+      text-align: center; padding: 20px 16px 0;
+      font-size: 12px; color: var(--text-light);
+      max-width: 500px; margin: 0 auto;
     }
-
-    footer strong { color: var(--blue-500); }
+    footer strong { color: var(--teal); }
+    .footer-line { border: none; border-top: 1px solid var(--border); margin-bottom: 14px; }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
-    <span class="hero-wave">🌊</span>
-    <div class="hero-badge">Bem-vindo ao</div>
-    <h1>Breeze 208</h1>
-    <p>Aqui estão tudo que você precisa saber para aproveitar ao máximo a sua estadia.</p>
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" data-lang="pt" onclick="setLang('pt')">🇧🇷 PT</button>
+  <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇺🇸 EN</button>
+  <button class="lang-btn" data-lang="es" onclick="setLang('es')">🇪🇸 ES</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow" data-i18n="eyebrow"></p>
+  <h1>Breeze 208</h1>
+  <p class="hero-sub" data-i18n="sub"></p>
+  <div class="hero-times">
+    <div class="hero-time">
+      <div class="ht-label" data-i18n="ci_lbl"></div>
+      <div class="ht-value">15h</div>
+      <div class="ht-sub" data-i18n="from"></div>
+    </div>
+    <div class="hero-div"></div>
+    <div class="hero-time">
+      <div class="ht-label" data-i18n="co_lbl"></div>
+      <div class="ht-value">12h</div>
+      <div class="ht-sub" data-i18n="until"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ESSENTIALS -->
+  <p class="section-label" data-i18n="s_essentials"></p>
+  <div class="accordion">
+
+    <!-- WIFI -->
+    <div class="acc-item open">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-t">📶</div>
+        <span class="acc-title">Wi-Fi</span>
+        <span class="acc-chevron">▾</span>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="wifi"></div>
+      </div>
+    </div>
+
+    <!-- ACCESS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-b">🔐</div>
+        <span class="acc-title" data-i18n="access_t"></span>
+        <span class="acc-chevron">▾</span>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="access"></div>
+      </div>
+    </div>
+
+    <!-- GUIDE -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-s">🏠</div>
+        <span class="acc-title" data-i18n="guide_t"></span>
+        <span class="acc-chevron">▾</span>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="guide"></div>
+      </div>
+    </div>
+
   </div>
 
-  <main>
-
-    <!-- CHECK-IN / CHECK-OUT -->
-    <p class="section-title">Horários</p>
-    <div class="checkin-grid">
-      <div class="checkin-card">
-        <div class="icon">🔑</div>
-        <div class="label">Check-in</div>
-        <div class="time">15h00</div>
-        <div class="sub">a partir de</div>
+  <!-- BUILDING -->
+  <p class="section-label" data-i18n="s_condo"></p>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-t">🏊</div>
+        <span class="acc-title" data-i18n="areas_t"></span>
+        <span class="acc-chevron">▾</span>
       </div>
-      <div class="checkin-card">
-        <div class="icon">🏖️</div>
-        <div class="label">Check-out</div>
-        <div class="time">12h00</div>
-        <div class="sub">até</div>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="areas"></div>
       </div>
     </div>
+  </div>
 
-    <!-- RULES -->
-    <p class="section-title">Regras & Informações</p>
-
-    <!-- Estacionamento -->
-    <div class="rule-card open">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-blue">🚗</div>
-        <h3>Estacionamento</h3>
-        <span class="chevron">▼</span>
+  <!-- LOCATION -->
+  <p class="section-label" data-i18n="s_loc"></p>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-g">📍</div>
+        <span class="acc-title" data-i18n="loc_t"></span>
+        <span class="acc-chevron">▾</span>
       </div>
-      <div class="rule-card-body">
-        <p>As vagas do condomínio são rotativas. Em períodos de altíssima temporada (réveillon e janeiro), o fluxo é maior — mas a região é tranquila e monitorada, caso precise parar na frente do prédio.</p>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="loc"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Churrasqueira -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-sand">🔥</div>
-        <h3>Churrasqueira</h3>
-        <span class="chevron">▼</span>
+  <!-- CHECKOUT -->
+  <p class="section-label" data-i18n="s_out"></p>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-icon bg-o">🧳</div>
+        <span class="acc-title" data-i18n="out_t"></span>
+        <span class="acc-chevron">▾</span>
       </div>
-      <div class="rule-card-body">
-        <p>Para utilizar a churrasqueira privativa da cobertura, o condomínio cobra uma <strong>taxa de reserva de R$ 100,00</strong>. Consulte disponibilidade na portaria.</p>
+      <div class="acc-body">
+        <div class="acc-body-inner" data-i18n-html="out"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Fumantes -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-red">🚭</div>
-        <h3>Fumantes</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <div class="alert">⚠️ É <strong>estritamente proibido</strong> fumar no apartamento e em qualquer dependência do condomínio.</div>
-      </div>
-    </div>
-
-    <!-- Pets -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-green">🐾</div>
-        <h3>Pets</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <p>Eu amo animais! No entanto, devido a experiências anteriores negativas, infelizmente <strong>não posso autorizar pets</strong> no apartamento. Conto com a sua compreensão. 🙏</p>
-      </div>
-    </div>
-
-    <!-- Áreas Comuns -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-blue">🏢</div>
-        <h3>Áreas Comuns</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <ul>
-          <li>Proibido transitar pelas áreas comuns com trajes de banho ou sem camisa.</li>
-          <li>Ao chegar da praia, utilize a ducha na entrada do acesso praia antes de entrar no condomínio.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Piscina -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-blue">🏊</div>
-        <h3>Piscina</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <div class="info" style="margin-bottom:14px">🕐 Todos os dias das <strong>6h às 22h</strong> — exceto nos dias de limpeza (que ocorre à noite).</div>
-        <ul>
-          <li>Utilize a ducha antes de entrar na piscina.</li>
-          <li>Use trajes com tecidos apropriados para banho.</li>
-          <li>Ao sair da piscina, utilizar o <strong>elevador de serviço</strong>.</li>
-          <li>Crianças não devem estar desacompanhadas.</li>
-          <li>Proibido pular de cabeça.</li>
-          <li>Proibido comer ou beber dentro da piscina.</li>
-          <li>Proibido objetos de vidro em toda a área da piscina.</li>
-          <li>Proibido som e festas.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Lixo -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-slate">🗑️</div>
-        <h3>Lixo</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <p>O lixo deve ser acondicionado em <strong>sacos plásticos</strong> (fornecidos no apartamento) e descartado nos depósitos localizados no <strong>subsolo / estacionamento (-1)</strong>.</p>
-      </div>
-    </div>
-
-    <!-- Visitas -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-red">🚷</div>
-        <h3>Visitas</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <div class="alert">⚠️ <strong>Não é permitido</strong> receber visitas no condomínio.</div>
-      </div>
-    </div>
-
-    <!-- Academia, Sauna & Lavanderia -->
-    <div class="rule-card">
-      <div class="rule-card-header" onclick="toggle(this)">
-        <div class="icon-wrap bg-green">💪</div>
-        <h3>Academia, Sauna & Lavanderia</h3>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="rule-card-body">
-        <div class="info" style="margin-bottom:14px">🕐 Todos os dias das <strong>7h às 22h</strong>.</div>
-        <p>Consulte a disponibilidade na portaria antes de utilizar.</p>
-      </div>
-    </div>
-
-    <!-- ATTRACTIONS PLACEHOLDER -->
-    <p class="section-title">Atratividades</p>
-    <div class="attractions-placeholder">
-      <div class="icon">🗺️</div>
-      <h3>Em breve por aqui!</h3>
-      <p>Dicas de restaurantes, passeios e o melhor que a região tem a oferecer.</p>
-    </div>
-
-  </main>
+  <!-- LOCAL TIPS -->
+  <p class="section-label" data-i18n="s_tips"></p>
+  <div class="tips-ph">
+    <div class="ti">🗺️</div>
+    <h3 data-i18n="tips_h"></h3>
+    <p data-i18n="tips_p"></p>
+  </div>
 
   <footer>
-    Feito com ❤️ para os hóspedes do <strong>Breeze 208</strong>
+    <hr class="footer-line"/>
+    <p data-i18n-html="footer_t"></p>
   </footer>
 
-  <script>
-    function toggle(header) {
-      header.closest('.rule-card').classList.toggle('open');
-    }
+</main>
 
-    // Open first card by default is already done via HTML class
-  </script>
+<!-- FIXED BUTTONS -->
+<div class="fab-bar">
+  <a href="https://wa.me/5588998630166" class="fab-btn fab-wa">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span data-i18n="btn_wa"></span>
+  </a>
+  <a href="tel:+5583988351392" class="fab-btn fab-port">
+    📞 <span data-i18n="btn_port"></span>
+  </a>
+</div>
 
+<script>
+const T = {
+  pt: {
+    eyebrow:"Bem-vindo ao", sub:"João Pessoa · Jardim Oceania · Pé na Areia",
+    ci_lbl:"Check-in", co_lbl:"Check-out", from:"a partir de", until:"até",
+    s_essentials:"Essenciais", s_condo:"Condomínio",
+    s_loc:"Localização", s_out:"Partida", s_tips:"Dicas Locais",
+    access_t:"Acesso ao Flat", guide_t:"Guia da Casa",
+    areas_t:"Áreas Comuns & Regras", loc_t:"Como Chegar", out_t:"Checkout",
+    tips_h:"Em breve!", tips_p:"Dicas de restaurantes, passeios e o melhor de João Pessoa.",
+    footer_t:"Feito com ❤️ para os hóspedes do <strong>Breeze 208</strong>",
+    btn_wa:"WhatsApp", btn_port:"Portaria",
+
+    wifi:`<div class="subsection">
+      <div class="sub-title">Dentro do flat</div>
+      <div class="pw-box"><div class="pw-label">Rede 1 — senha</div><div class="pw-value">Claro246</div></div>
+      <div class="pw-box"><div class="pw-label">Rede 2 — senha</div><div class="pw-value">Breeze246@.</div><div class="pw-note">atenção: inclui o ponto final</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Áreas comuns (lavanderia, academia, corredores)</div>
+      <div class="pw-box"><div class="pw-label">Senha</div><div class="pw-value">Breeze2024.</div><div class="pw-note">atenção: inclui o ponto final</div></div>
+    </div>`,
+
+    access:`<div class="subsection">
+      <div class="sub-title">Senha da fechadura</div>
+      <div class="pw-box"><div class="pw-label">Digite e confirme com #</div><div class="pw-value">190190#</div><div class="pw-note">toque no centro da fechadura para ativar</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Passo a passo</div>
+      <ol class="steps">
+        <li>Dirija-se à entrada principal e acione o interfone — botão <strong>"Portaria"</strong></li>
+        <li>Informe a <strong>unidade 208</strong> e apresente documento com foto. Realize o cadastro de reconhecimento facial para acesso às áreas comuns</li>
+        <li>Pegue o elevador até o <strong>1º andar</strong> (botão 1). Siga o corredor até o final — flat à direita</li>
+        <li>Toque no centro da fechadura e insira a senha <strong>190190#</strong></li>
+      </ol>
+    </div>`,
+
+    guide:`<div class="detail-item"><span class="di">⚡</span><div><strong>Energia</strong><br>O quadro geral fica na caixinha branca embutida na parede, próxima à porta. Se faltar energia em alguma tomada ou iluminação, verifique se todas as chaves estão ligadas.</div></div>
+    <div class="detail-item"><span class="di">🚿</span><div><strong>Chuveiro Elétrico (Lorenzetti)</strong><br>3 estágios de temperatura:<br>• Pos. 1 — Verão (mais frio) &nbsp;• Pos. 2 — Médio &nbsp;• Pos. 3 — Inverno (mais quente)<br><em>Gire o seletor antes de ligar.</em></div></div>
+    <div class="detail-item"><span class="di">🍳</span><div><strong>Cooktop de Indução (Agratto — 1 boca)</strong><br>Use apenas as panelas do flat (compatíveis com indução).<br>• Liga/Desliga: botão principal &nbsp;• Potência: botões + e −<br>• Trava: segure o botão por 3 s <em>(útil com crianças)</em><br><em>A superfície pode ficar quente — aguarde esfriar antes de limpar.</em></div></div>
+    <div class="detail-item"><span class="di">📺</span><div><strong>Smart TV</strong><br>Netflix, Disney+ e Globoplay disponíveis. Fique à vontade para instalar outros apps de streaming.</div></div>
+    <div class="detail-item"><span class="di">🪟</span><div><strong>Janela Lateral</strong><br>Ao sair, certifique-se de fechar a janela lateral. A região tem chuvas imprevisíveis que podem molhar o interior.</div></div>`,
+
+    areas:`<div class="subsection">
+      <div class="sub-title">🏊 Piscina Infinita com Vista Mar</div>
+      <div class="info-box">⏰ Todos os dias das <strong>6h às 22h</strong> — exceto dias de limpeza (à noite).</div>
+      <ul class="bullets">
+        <li><span class="bi">🚿</span><span>Use a ducha antes de entrar e traje com tecido apropriado</span></li>
+        <li><span class="bi">🛗</span><span>Ao sair da piscina, utilize o elevador de serviço</span></li>
+        <li><span class="bi">👶</span><span>Crianças devem estar sempre acompanhadas de um adulto</span></li>
+        <li><span class="bi">❌</span><span>Proibido pular de cabeça</span></li>
+        <li><span class="bi">❌</span><span>Proibido comer ou beber na piscina</span></li>
+        <li><span class="bi">❌</span><span>Proibido objetos de vidro em toda a área</span></li>
+        <li><span class="bi">❌</span><span>Proibido som alto e festas</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🧖 Sauna</div>
+      <p class="body-text">Disponível na cobertura. Horário: <strong>7h às 22h</strong>. Consulte disponibilidade na portaria.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🔥 Área Gourmet (Cobertura)</div>
+      <p class="body-text">Churrasqueira elétrica com vista mar. <strong>Taxa de reserva: R$ 100,00</strong> — agende na portaria.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">💪 Academia</div>
+      <p class="body-text">Todos os dias, <strong>7h às 22h</strong>. Consulte disponibilidade na portaria.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">👕 Lavanderia Compartilhada</div>
+      <p class="body-text">Todos os dias, <strong>7h às 22h</strong>. <strong>R$ 17,50</strong> lavar · <strong>R$ 17,50</strong> secar.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🏖️ Acesso à Praia</div>
+      <p class="body-text">Portão no piso principal — acesso direto à areia sem cruzar nenhuma rua. Ao voltar, use a ducha na entrada do acesso à praia.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">📋 Regras Gerais</div>
+      <ul class="bullets">
+        <li><span class="bi">👔</span><span>Proibido circular de roupa de banho ou sem camisa nas áreas comuns</span></li>
+        <li><span class="bi">🚭</span><span>Estritamente proibido fumar no apartamento e em todas as dependências</span></li>
+        <li><span class="bi">🗑️</span><span>Lixo em sacos plásticos — depositar no subsolo (-1)</span></li>
+        <li><span class="bi">🚷</span><span>Não é permitido receber visitas externas</span></li>
+        <li><span class="bi">🚘</span><span>Estacionamento rotativo no subsolo + 2 vagas gratuitas na frente do prédio</span></li>
+      </ul>
+    </div>`,
+
+    loc:`<div class="subsection">
+      <div class="info-box">📍 Av. Gov. Argemiro de Figueiredo, 540 — Jardim Oceania, João Pessoa – PB · Unidade 208<br><em>Em frente ao Colégio ISO</em></div>
+      <a href="https://maps.google.com/?q=Av.+Gov.+Argemiro+de+Figueiredo,+540,+Jardim+Oceania,+João+Pessoa" target="_blank" class="map-btn">🗺️ Abrir no Google Maps</a>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Como chegar</div>
+      <ul class="bullets">
+        <li><span class="bi">🚗</span><span>De carro: 2 vagas gratuitas na frente do prédio. Avenida asfaltada de fácil acesso.</span></li>
+        <li><span class="bi">🚕</span><span>De Uber/táxi: peça para parar na Av. Gov. Argemiro de Figueiredo, 540 — em frente ao Colégio ISO.</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Proximidades</div>
+      <div class="prox-item">🏖️ Praia — acesso direto pelo prédio</div>
+      <div class="prox-item">🛍️ Mag Shopping — 600m (cinema + praça de alimentação com vista mar)</div>
+      <div class="prox-item">🍽️ Supermercados, padarias, farmácias, bares e restaurantes — &lt;10 min a pé</div>
+      <div class="prox-item">🏄 Orlas de Manaíra, Tambaú e Cabo Branco — 5 a 15 min de carro</div>
+      <div class="prox-item">✈️ Aeroporto de JP (JPA) — ~30 min de Uber</div>
+      <div class="prox-item">✈️ Aeroporto do Recife (REC) — ~2h30 de carro</div>
+    </div>`,
+
+    out:`<div class="subsection">
+      <div class="info-box">⏰ <strong>Até as 12h00</strong> — Precisa de mais tempo? Entre em contato! Farei o possível para ajudar 😊</div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Antes de sair</div>
+      <ul class="checklist">
+        <li>✅ Feche todas as janelas</li>
+        <li>✅ Desligue o ar-condicionado</li>
+        <li>✅ Desligue as luzes e eletrodomésticos</li>
+        <li>✅ Passe na portaria para realizar o checkout</li>
+      </ul>
+    </div>`,
+  },
+
+  en: {
+    eyebrow:"Welcome to", sub:"João Pessoa · Jardim Oceania · Beachfront",
+    ci_lbl:"Check-in", co_lbl:"Check-out", from:"from", until:"until",
+    s_essentials:"Essentials", s_condo:"Building",
+    s_loc:"Location", s_out:"Departure", s_tips:"Local Tips",
+    access_t:"Flat Access", guide_t:"Home Guide",
+    areas_t:"Common Areas & Rules", loc_t:"How to Get Here", out_t:"Checkout",
+    tips_h:"Coming soon!", tips_p:"Restaurant tips, tours and the best of João Pessoa.",
+    footer_t:"Made with ❤️ for guests of <strong>Breeze 208</strong>",
+    btn_wa:"WhatsApp", btn_port:"Front Desk",
+
+    wifi:`<div class="subsection">
+      <div class="sub-title">Inside the flat</div>
+      <div class="pw-box"><div class="pw-label">Network 1 — password</div><div class="pw-value">Claro246</div></div>
+      <div class="pw-box"><div class="pw-label">Network 2 — password</div><div class="pw-value">Breeze246@.</div><div class="pw-note">note: includes the trailing dot</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Common areas (laundry, gym, hallways)</div>
+      <div class="pw-box"><div class="pw-label">Password</div><div class="pw-value">Breeze2024.</div><div class="pw-note">note: includes the trailing dot</div></div>
+    </div>`,
+
+    access:`<div class="subsection">
+      <div class="sub-title">Lock password</div>
+      <div class="pw-box"><div class="pw-label">Enter code and confirm with #</div><div class="pw-value">190190#</div><div class="pw-note">tap the center of the lock to activate</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Step by step</div>
+      <ol class="steps">
+        <li>Go to the main entrance and press the intercom — <strong>"Portaria"</strong> button</li>
+        <li>Inform <strong>unit 208</strong> and show a photo ID. Complete the facial recognition registration for common area access</li>
+        <li>Take the elevator to the <strong>1st floor</strong> (button 1). Walk to the end of the hallway — flat on the right</li>
+        <li>Tap the center of the lock and enter code <strong>190190#</strong></li>
+      </ol>
+    </div>`,
+
+    guide:`<div class="detail-item"><span class="di">⚡</span><div><strong>Power</strong><br>The main breaker is in the white built-in box near the front door. If any outlet or light stops working, check that all switches are on.</div></div>
+    <div class="detail-item"><span class="di">🚿</span><div><strong>Electric Shower (Lorenzetti)</strong><br>3 temperature settings:<br>• Pos. 1 — Summer (coolest) &nbsp;• Pos. 2 — Medium &nbsp;• Pos. 3 — Winter (hottest)<br><em>Turn the dial before switching on.</em></div></div>
+    <div class="detail-item"><span class="di">🍳</span><div><strong>Induction Cooktop (Agratto — 1 burner)</strong><br>Use only the pots available in the flat (induction-compatible).<br>• On/Off: main button &nbsp;• Power: + and − buttons<br>• Child lock: hold button for 3 s<br><em>The surface may stay hot — wait before cleaning.</em></div></div>
+    <div class="detail-item"><span class="di">📺</span><div><strong>Smart TV</strong><br>Netflix, Disney+ and Globoplay available. Feel free to install other streaming apps.</div></div>
+    <div class="detail-item"><span class="di">🪟</span><div><strong>Side Window</strong><br>Before leaving, make sure to close the side window. The region has unpredictable rain that can wet the interior.</div></div>`,
+
+    areas:`<div class="subsection">
+      <div class="sub-title">🏊 Infinity Pool with Ocean View</div>
+      <div class="info-box">⏰ Every day from <strong>6am to 10pm</strong> — except cleaning days (at night).</div>
+      <ul class="bullets">
+        <li><span class="bi">🚿</span><span>Shower before entering and wear appropriate swimwear</span></li>
+        <li><span class="bi">🛗</span><span>After swimming, use the service elevator</span></li>
+        <li><span class="bi">👶</span><span>Children must always be with an adult</span></li>
+        <li><span class="bi">❌</span><span>No diving</span></li>
+        <li><span class="bi">❌</span><span>No eating or drinking in the pool</span></li>
+        <li><span class="bi">❌</span><span>No glass objects in the pool area</span></li>
+        <li><span class="bi">❌</span><span>No loud music or parties</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🧖 Sauna</div>
+      <p class="body-text">Available on the rooftop. Hours: <strong>7am–10pm</strong>. Check availability at the front desk.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🔥 Gourmet Area (Rooftop)</div>
+      <p class="body-text">Electric BBQ grill with ocean view. <strong>Reservation fee: R$ 100.00</strong> — book at the front desk.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">💪 Gym</div>
+      <p class="body-text">Every day, <strong>7am–10pm</strong>. Check availability at the front desk.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">👕 Shared Laundry</div>
+      <p class="body-text">Every day, <strong>7am–10pm</strong>. <strong>R$ 17.50</strong> wash · <strong>R$ 17.50</strong> dry.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🏖️ Beach Access</div>
+      <p class="body-text">Gate on the ground floor — direct sand access, no streets to cross. When returning, use the outdoor shower at the beach entrance.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">📋 General Rules</div>
+      <ul class="bullets">
+        <li><span class="bi">👔</span><span>No swimwear or shirtless in common areas</span></li>
+        <li><span class="bi">🚭</span><span>Strictly no smoking in the flat or anywhere in the building</span></li>
+        <li><span class="bi">🗑️</span><span>Trash in plastic bags — dispose in basement storage (-1)</span></li>
+        <li><span class="bi">🚷</span><span>No external visitors allowed</span></li>
+        <li><span class="bi">🚘</span><span>Rotating parking in basement + 2 free spots in front of the building</span></li>
+      </ul>
+    </div>`,
+
+    loc:`<div class="subsection">
+      <div class="info-box">📍 Av. Gov. Argemiro de Figueiredo, 540 — Jardim Oceania, João Pessoa – PB · Unit 208<br><em>Across from Colégio ISO</em></div>
+      <a href="https://maps.google.com/?q=Av.+Gov.+Argemiro+de+Figueiredo,+540,+Jardim+Oceania,+João+Pessoa" target="_blank" class="map-btn">🗺️ Open in Google Maps</a>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">How to get here</div>
+      <ul class="bullets">
+        <li><span class="bi">🚗</span><span>By car: 2 free spots in front of the building. Easy access via paved avenue.</span></li>
+        <li><span class="bi">🚕</span><span>By Uber/taxi: ask to stop at Av. Gov. Argemiro de Figueiredo, 540 — across from Colégio ISO.</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Nearby</div>
+      <div class="prox-item">🏖️ Beach — direct access through the building</div>
+      <div class="prox-item">🛍️ Mag Shopping — 600m (cinema + food court with ocean view)</div>
+      <div class="prox-item">🍽️ Supermarkets, bakeries, pharmacies, bars & restaurants — &lt;10 min walk</div>
+      <div class="prox-item">🏄 Manaíra, Tambaú and Cabo Branco waterfronts — 5–15 min by car</div>
+      <div class="prox-item">✈️ João Pessoa Airport (JPA) — ~30 min by Uber</div>
+      <div class="prox-item">✈️ Recife Airport (REC) — ~2h30 by car</div>
+    </div>`,
+
+    out:`<div class="subsection">
+      <div class="info-box">⏰ <strong>By 12:00 PM</strong> — Need more time? Just reach out! I'll do my best to help 😊</div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Before leaving</div>
+      <ul class="checklist">
+        <li>✅ Close all windows</li>
+        <li>✅ Turn off the air conditioner</li>
+        <li>✅ Turn off lights and appliances</li>
+        <li>✅ Stop by the front desk for checkout</li>
+      </ul>
+    </div>`,
+  },
+
+  es: {
+    eyebrow:"Bienvenido/a al", sub:"João Pessoa · Jardim Oceania · Frente al Mar",
+    ci_lbl:"Check-in", co_lbl:"Check-out", from:"desde las", until:"hasta las",
+    s_essentials:"Esenciales", s_condo:"Edificio",
+    s_loc:"Ubicación", s_out:"Salida", s_tips:"Consejos Locales",
+    access_t:"Acceso al Flat", guide_t:"Guía del Hogar",
+    areas_t:"Áreas Comunes & Reglas", loc_t:"Cómo Llegar", out_t:"Checkout",
+    tips_h:"¡Próximamente!", tips_p:"Consejos de restaurantes, paseos y lo mejor de João Pessoa.",
+    footer_t:"Hecho con ❤️ para los huéspedes de <strong>Breeze 208</strong>",
+    btn_wa:"WhatsApp", btn_port:"Recepción",
+
+    wifi:`<div class="subsection">
+      <div class="sub-title">Dentro del flat</div>
+      <div class="pw-box"><div class="pw-label">Red 1 — contraseña</div><div class="pw-value">Claro246</div></div>
+      <div class="pw-box"><div class="pw-label">Red 2 — contraseña</div><div class="pw-value">Breeze246@.</div><div class="pw-note">atención: incluye el punto final</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Áreas comunes (lavandería, gimnasio, pasillos)</div>
+      <div class="pw-box"><div class="pw-label">Contraseña</div><div class="pw-value">Breeze2024.</div><div class="pw-note">atención: incluye el punto final</div></div>
+    </div>`,
+
+    access:`<div class="subsection">
+      <div class="sub-title">Contraseña de la cerradura</div>
+      <div class="pw-box"><div class="pw-label">Ingresa el código y confirma con #</div><div class="pw-value">190190#</div><div class="pw-note">toca el centro de la cerradura para activarla</div></div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Paso a paso</div>
+      <ol class="steps">
+        <li>Dirígete a la entrada principal y presiona el portero eléctrico — botón <strong>"Portaria"</strong></li>
+        <li>Informa la <strong>unidad 208</strong> y presenta un documento con foto. Realiza el registro de reconocimiento facial para acceder a las áreas comunes</li>
+        <li>Toma el ascensor hasta el <strong>1er piso</strong> (botón 1). Camina hasta el final del pasillo — flat a la derecha</li>
+        <li>Toca el centro de la cerradura e ingresa el código <strong>190190#</strong></li>
+      </ol>
+    </div>`,
+
+    guide:`<div class="detail-item"><span class="di">⚡</span><div><strong>Energía</strong><br>El tablero principal está en la caja blanca empotrada cerca de la puerta. Si falta energía en algún enchufe o iluminación, verifica que todos los interruptores estén encendidos.</div></div>
+    <div class="detail-item"><span class="di">🚿</span><div><strong>Ducha Eléctrica (Lorenzetti)</strong><br>3 niveles de temperatura:<br>• Pos. 1 — Verano (más frío) &nbsp;• Pos. 2 — Medio &nbsp;• Pos. 3 — Invierno (más caliente)<br><em>Gira el selector antes de encender.</em></div></div>
+    <div class="detail-item"><span class="di">🍳</span><div><strong>Cocina de Inducción (Agratto — 1 hornilla)</strong><br>Usa solo las ollas del flat (compatibles con inducción).<br>• Encendido: botón principal &nbsp;• Potencia: botones + y −<br>• Bloqueo infantil: mantén el botón 3 s<br><em>La superficie puede quedar caliente — espera antes de limpiar.</em></div></div>
+    <div class="detail-item"><span class="di">📺</span><div><strong>Smart TV</strong><br>Netflix, Disney+ y Globoplay disponibles. Puedes instalar otras apps de streaming.</div></div>
+    <div class="detail-item"><span class="di">🪟</span><div><strong>Ventana Lateral</strong><br>Al salir, asegúrate de cerrar la ventana lateral. La región tiene lluvias impredecibles que pueden mojar el interior.</div></div>`,
+
+    areas:`<div class="subsection">
+      <div class="sub-title">🏊 Piscina Infinita con Vista al Mar</div>
+      <div class="info-box">⏰ Todos los días de <strong>6h a 22h</strong> — excepto días de limpieza (por la noche).</div>
+      <ul class="bullets">
+        <li><span class="bi">🚿</span><span>Dúchate antes de entrar y usa ropa de baño adecuada</span></li>
+        <li><span class="bi">🛗</span><span>Al salir de la piscina, usa el ascensor de servicio</span></li>
+        <li><span class="bi">👶</span><span>Los niños deben estar siempre acompañados por un adulto</span></li>
+        <li><span class="bi">❌</span><span>Prohibido saltar de cabeza</span></li>
+        <li><span class="bi">❌</span><span>Prohibido comer o beber en la piscina</span></li>
+        <li><span class="bi">❌</span><span>Prohibido objetos de vidrio en toda el área</span></li>
+        <li><span class="bi">❌</span><span>Prohibido música alta y fiestas</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🧖 Sauna</div>
+      <p class="body-text">Disponible en la azotea. Horario: <strong>7h–22h</strong>. Consulta disponibilidad en recepción.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🔥 Área Gourmet (Azotea)</div>
+      <p class="body-text">Parrilla eléctrica con vista al mar. <strong>Tarifa de reserva: R$ 100,00</strong> — reserva en recepción.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">💪 Gimnasio</div>
+      <p class="body-text">Todos los días, <strong>7h–22h</strong>. Consulta disponibilidad en recepción.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">👕 Lavandería Compartida</div>
+      <p class="body-text">Todos los días, <strong>7h–22h</strong>. <strong>R$ 17,50</strong> lavar · <strong>R$ 17,50</strong> secar.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">🏖️ Acceso a la Playa</div>
+      <p class="body-text">Portón en la planta baja — acceso directo a la arena sin cruzar calles. Al regresar, usa la ducha exterior en la entrada de acceso a la playa.</p>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">📋 Reglas Generales</div>
+      <ul class="bullets">
+        <li><span class="bi">👔</span><span>Prohibido circular en traje de baño o sin camiseta en áreas comunes</span></li>
+        <li><span class="bi">🚭</span><span>Estrictamente prohibido fumar en el flat y en todas las dependencias</span></li>
+        <li><span class="bi">🗑️</span><span>Basura en bolsas plásticas — depositar en el sótano (-1)</span></li>
+        <li><span class="bi">🚷</span><span>No se permiten visitas externas</span></li>
+        <li><span class="bi">🚘</span><span>Estacionamiento rotativo en sótano + 2 espacios gratuitos frente al edificio</span></li>
+      </ul>
+    </div>`,
+
+    loc:`<div class="subsection">
+      <div class="info-box">📍 Av. Gov. Argemiro de Figueiredo, 540 — Jardim Oceania, João Pessoa – PB · Unidad 208<br><em>Frente al Colégio ISO</em></div>
+      <a href="https://maps.google.com/?q=Av.+Gov.+Argemiro+de+Figueiredo,+540,+Jardim+Oceania,+João+Pessoa" target="_blank" class="map-btn">🗺️ Abrir en Google Maps</a>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Cómo llegar</div>
+      <ul class="bullets">
+        <li><span class="bi">🚗</span><span>En carro: 2 espacios gratuitos frente al edificio. Avenida asfaltada de fácil acceso.</span></li>
+        <li><span class="bi">🚕</span><span>En Uber/taxi: pide que te dejen en Av. Gov. Argemiro de Figueiredo, 540 — frente al Colégio ISO.</span></li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Cercanías</div>
+      <div class="prox-item">🏖️ Playa — acceso directo desde el edificio</div>
+      <div class="prox-item">🛍️ Mag Shopping — 600m (cine + patio de comidas con vista al mar)</div>
+      <div class="prox-item">🍽️ Supermercados, panaderías, farmacias, bares y restaurantes — &lt;10 min a pie</div>
+      <div class="prox-item">🏄 Malecones de Manaíra, Tambaú y Cabo Branco — 5–15 min en carro</div>
+      <div class="prox-item">✈️ Aeropuerto de JP (JPA) — ~30 min en Uber</div>
+      <div class="prox-item">✈️ Aeropuerto de Recife (REC) — ~2h30 en carro</div>
+    </div>`,
+
+    out:`<div class="subsection">
+      <div class="info-box">⏰ <strong>Hasta las 12:00h</strong> — ¿Necesitas más tiempo? ¡Escríbenos! Haremos lo posible para ayudarte 😊</div>
+    </div>
+    <div class="subsection">
+      <div class="sub-title">Antes de salir</div>
+      <ul class="checklist">
+        <li>✅ Cierra todas las ventanas</li>
+        <li>✅ Apaga el aire acondicionado</li>
+        <li>✅ Apaga las luces y electrodomésticos</li>
+        <li>✅ Pasa por recepción para hacer el checkout</li>
+      </ul>
+    </div>`,
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[lang][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = T[lang][el.dataset.i18nHtml];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang)
+  );
+}
+
+function toggle(header) {
+  header.closest('.acc-item').classList.toggle('open');
+}
+
+setLang('pt');
+</script>
 </body>
 </html>
